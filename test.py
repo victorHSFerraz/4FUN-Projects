@@ -1,6 +1,7 @@
 import math
 import pygame
 from random import randint
+from pygame import mixer
 
 
 # Inicializa o programa
@@ -11,6 +12,10 @@ screen = pygame.display.set_mode((800, 600))
 
 # Background
 background = pygame.image.load("bg.jpg")
+
+# Background sound
+mixer.music.load("backgroundsound.mp3")
+mixer.music.play(-1)
 
 # Titulo e icone
 pygame.display.set_caption("Project One")
@@ -105,6 +110,8 @@ while running:
                 print("Right arrow is pressed...")
                 playerX_change = 1.3
             if event.key == pygame.K_SPACE:
+                bullet_sound = mixer.Sound("lasersound.wav")
+                bullet_sound.play()
                 if bullet_state == "ready":
                     bulletX = playerX
                     fire_bullet(bulletX, bulletY)
@@ -136,6 +143,8 @@ while running:
         # Collision
         collision = is_collision(enemyX[i], enemyY[i], bulletX, bulletY)
         if collision:
+            collision_sound = mixer.Sound("explosion.wav")
+            collision_sound.play()
             bulletY = 480
             bullet_state = "ready"
             score_value += 1
