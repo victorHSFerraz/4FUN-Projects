@@ -175,8 +175,6 @@ while running:
         fire_bullet(bulletX, bulletY)
         bulletY -= bulletY_change
 
-
-
     # Chamar a função player/enemy para desenha-lo na tela
     player(playerX, playerY)
     show_score(textX, textY)
